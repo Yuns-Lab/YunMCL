@@ -1,0 +1,144 @@
+@keyframes latter-slice-top {
+    0% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+[fade-u] {
+    --start: 0s;
+    --delay: 1s;
+    --lv: 0;
+    animation: latter-slice-top calc(1s / var(--global-time)) both;
+    animation-delay: calc(
+        calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
+    );
+    transform: translateY(12px);
+}
+
+@for $k from 1 through 40 {
+    [fade-u#{$k}] {
+        --lv: calc(#{$k} * 0.25);
+        --start: 0s;
+        --delay: 1s;
+        animation: latter-slice-top calc(1s / var(--global-time)) both;
+        animation-delay: calc(
+            calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
+        );
+        transform: translateY(12px);
+    }
+}
+
+@keyframes latter-slice-bottom {
+    0% {
+        opacity: 0;
+        transform: translateY(-12px);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+[fade-d] {
+    --start: 0s;
+    --delay: 1s;
+    --lv: 0;
+    animation: latter-slice-bottom calc(1s / var(--global-time)) both;
+    animation-delay: calc(
+        calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
+    );
+    transform: translateY(-12px);
+}
+
+@for $k from 1 through 40 {
+    [fade-d#{$k}] {
+        --lv: calc(#{$k} * 0.25);
+        --start: 0s;
+        --delay: 1s;
+        animation: latter-slice-bottom calc(1s / var(--global-time)) both;
+        animation-delay: calc(
+            calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
+        );
+        transform: translateY(-12px);
+    }
+}
+
+@keyframes latter-slice-left {
+    0% {
+        opacity: 0;
+        transform: translateX(12px);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+[fade-l] {
+    --start: 0s;
+    --delay: 1s;
+    --lv: 0;
+    animation: latter-slice-left calc(1s / var(--global-time)) both;
+    animation-delay: calc(
+        calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
+    );
+    transform: translateX(12px);
+}
+
+@for $k from 1 through 40 {
+    [fade-l#{$k}] {
+        --lv: calc(#{$k} * 0.25);
+        --start: 0s;
+        --delay: 1s;
+        animation: latter-slice-left calc(1s / var(--global-time)) both;
+        animation-delay: calc(
+            calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
+        );
+        transform: translateX(12px);
+    }
+}
+
+@keyframes latter-slice-right {
+    0% {
+        opacity: 0;
+        transform: translateX(-12px);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+[fade-r] {
+    --start: 0s;
+    --delay: 1s;
+    --lv: 0;
+    animation: latter-slice-right calc(1s / var(--global-time)) both;
+    animation-delay: calc(
+        calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
+    );
+    transform: translateX(-12px);
+}
+
+@for $k from 1 through 40 {
+    [fade-r#{$k}] {
+        --lv: calc(#{$k} * 0.25);
+        --start: 0s;
+        --delay: 1s;
+        animation: latter-slice-right calc(1s / var(--global-time)) both;
+        animation-delay: calc(
+            calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
+        );
+        transform: translateX(-12px);
+    }
+}
+
+@keyframes rotate-90-r {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(90deg);
+    }
+}
