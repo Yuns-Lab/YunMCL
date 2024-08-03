@@ -3,6 +3,14 @@ div#app {
     @apply w-full h-[100vh];
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
+button:not([hastab]) {
+    outline: none;
+}
+
 // #region 字体
 @font-face {
     font-family: "Bahnschrift";
@@ -26,6 +34,9 @@ body {
     --lbtn-br: hsl(44.88, 100%, 50%);
     --lbtn-bg: hsla(45, 100%, 50%, 0.671);
     --cbg: hsla(0, 0%, 100%, 0.9);
+    --loading-1: hsl(82.25, 95%, 55%);
+    --loading-2: hsl(44.88, 100%, 65%);
+    --loading-3: hsl(180, 100%, 65%);
     font-family: "Bahnschrift", "Zhushi", Arial, Helvetica, sans-serif;
     user-select: none;
 }

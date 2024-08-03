@@ -12,6 +12,8 @@
     "dependencies": {
         "@tauri-apps/api": "^1",
         "@vueuse/motion": "^2.2.3",
+        "axios": "^1.7.3",
+        "element-plus": "^2.7.8",
         "vue": "^3.3.4"
     },
     "devDependencies": {

@@ -11,6 +11,11 @@ import router from "./router";
 app.use(router);
 //#endregion
 
+//#region 组件
+import { ElScrollbar } from "element-plus";
+app.component("ElScrollbar", ElScrollbar);
+//#endregion
+
 app.mount("#app");
 
 //#region 样式

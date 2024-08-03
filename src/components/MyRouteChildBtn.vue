@@ -17,7 +17,7 @@
 
 <template>
     <button
-        class="btn w-4/5 h-[4vh] rounded-[4rem] rounded-tl-[1rem] bg-[var(--sbtn-bg)] ml-auto mt-2 relative flex justify-center items-center transition-colors"
+        class="btn w-4/5 h-[4vh] rounded-[0.375rem] bg-[var(--sbtn-bg)] ml-auto mt-2 relative flex justify-center items-center transition-colors"
         :class="{ this: props.route === route }"
         @click="$router.push(props.route)">
         <span class="text-[1.3rem]">

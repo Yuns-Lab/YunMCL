@@ -1,44 +1,65 @@
 <script setup lang="tsx">
     import MyCard from "../../components/MyCard.vue";
     import MyBlurImg from "../../components/MyBlurImg.vue";
+
+    import { useRouter } from "vue-router";
+    const $router = useRouter();
 </script>
 
 <template>
-    <legend>
-        <MyCard class="relative">
+    <legend @click="$router.push('/settings/minecraft')">
+        <MyCard
+            class="relative"
+            fade-u>
             <MyBlurImg
                 src="/images/settings/minecraft.webp"
                 :blur="6" />
             <div class="my-container">
-                <h1 class="ml-[0.375rem]">游戏设置</h1>
-                <p>配置有关游戏启动的内容。</p>
-                <span>前往 &gt;&gt;&gt;</span>
+                <h1
+                    class="ml-[0.375rem]"
+                    fade-u1>
+                    游戏设置
+                </h1>
+                <p fade-u2>配置有关游戏启动的内容。</p>
+                <span fade-u3>前往 &gt;&gt;&gt;</span>
             </div>
         </MyCard>
     </legend>
     <br />
-    <legend>
-        <MyCard class="relative">
+    <legend @click="$router.push('/settings/customize')">
+        <MyCard
+            class="relative"
+            fade-u>
             <MyBlurImg
                 src="/images/settings/customize.webp"
                 :blur="6" />
             <div class="my-container">
-                <h1 class="ml-[0.375rem]">个性化设置</h1>
-                <p>自由调整启动器的样式，完美契合你心中所想。</p>
-                <span>前往 &gt;&gt;&gt;</span>
+                <h1
+                    class="ml-[0.375rem]"
+                    fade-u1>
+                    个性化设置
+                </h1>
+                <p fade-u2>自由调整启动器的样式，完美契合你心中所想。</p>
+                <span fade-u3>前往 &gt;&gt;&gt;</span>
             </div>
         </MyCard>
     </legend>
     <br />
-    <legend>
-        <MyCard class="relative">
+    <legend @click="$router.push('/settings/launcher')">
+        <MyCard
+            class="relative"
+            fade-u>
             <MyBlurImg
                 src="/images/settings/launcher.webp"
                 :blur="6" />
             <div class="my-container">
-                <h1 class="ml-[0.375rem]">启动器设置</h1>
-                <p>配置启动器的核心内容。</p>
-                <span>前往 &gt;&gt;&gt;</span>
+                <h1
+                    class="ml-[0.375rem]"
+                    fade-u1>
+                    启动器设置
+                </h1>
+                <p fade-u2>配置启动器的核心内容。</p>
+                <span fade-u3>前往 &gt;&gt;&gt;</span>
             </div>
         </MyCard>
     </legend>

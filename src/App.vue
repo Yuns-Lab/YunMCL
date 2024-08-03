@@ -12,9 +12,11 @@
                 class="bg-[var(--main-bg)]"
                 style="grid-area: aside" />
             <div
-                class="router"
+                class="router relative"
                 style="grid-area: main">
-                <RouterView />
+                <Suspense>
+                    <RouterView />
+                </Suspense>
             </div>
         </div>
     </div>

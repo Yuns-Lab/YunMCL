@@ -3,6 +3,9 @@
     import MyCard from "../components/MyCard.vue";
     import MyBtn from "../components/MyBtn.vue";
 
+    // Temp
+    import MyInpWarning from "../components/MyInpWarning.vue";
+
     import { appWindow } from "@tauri-apps/api/window";
     const getWindowSize = async () => {
         const size = await appWindow.innerSize();
@@ -50,12 +53,17 @@
         padding
         fade-u1>
         <div class="flex gap-3 items-center">
-            <h1 class="text-3xl mr-6" fade-l2>快捷方式</h1>
+            <h1
+                class="text-3xl mr-6"
+                fade-l2>
+                快捷方式
+            </h1>
             <MyBtn fade-l3>版本文件夹</MyBtn>
             <MyBtn fade-l4>Mod 文件夹</MyBtn>
             <MyBtn fade-l5>存档文件夹</MyBtn>
         </div>
     </MyCard>
+    <MyInpWarning fade-r10 />
 </template>
 
 <style lang="scss" scoped>

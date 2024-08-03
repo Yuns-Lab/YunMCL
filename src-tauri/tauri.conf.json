@@ -10,7 +10,10 @@
     },
     "tauri": {
         "allowlist": {
-            "all": true
+            "all": true,
+            "fs": {
+                "scope": ["$APPCACHE\\api_fetch\\version_manifest.json"]
+            }
         },
         "windows": [
             {

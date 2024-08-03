@@ -1,5 +1,5 @@
 [workspace]
-members = ["core", "download"]
+members = ["rcore", "rdownload"]
 
 [package]
 name = "ymcl"
@@ -13,6 +13,8 @@ edition = "2021"
 tauri = { version = "1", features = ["api-all"] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+rcore = { path = "./rcore" }
+reqwest = "0.11"
 
 # Dev
 [build-dependencies]

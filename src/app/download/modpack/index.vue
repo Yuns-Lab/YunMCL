@@ -1,3 +1,7 @@
+<script setup lang="ts">
+    import MyInpWarning from "../../../components/MyInpWarning.vue";
+</script>
+
 <template>
-    <span>Modpack</span>
+    <MyInpWarning fade-r10 />
 </template>
