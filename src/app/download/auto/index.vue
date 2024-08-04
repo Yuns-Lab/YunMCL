@@ -2,20 +2,16 @@
     import MyCard from "../../../components/MyCard.vue";
     import MyLoading from "../../../components/MyLoading.vue";
     import MyItem from "../../../components/MyItem.vue";
+    import MyInpWarning from "../../../components/MyInpWarning.vue";
 
-    import { SimpleFileIO as IO } from "../../../module/SimpleFIleIO";
-    import { resolve, appCacheDir } from "@tauri-apps/api/path";
-    import axios from "axios";
     import { onMounted, ref, reactive } from "vue";
-import MyInpWarning from "../../../components/MyInpWarning.vue";
-
-    interface Client {
-        id: string;
-        type: "release" | "snapshot" | "old_beta" | "old_alpha";
-        url: string;
-        time: string;
-        releaseTime: string;
-    }
+    import { resolve, appCacheDir } from "@tauri-apps/api/path";
+    import { SimpleFileIO as IO } from "../../../module/SimpleFIleIO";
+    import {
+        type Client,
+        no_data_handler,
+        loading,
+    } from "../../../module/api-fetch/MinecraftVersionManifest";
 
     const status = ref("pending");
     const version_manifest = reactive({
@@ -28,85 +24,10 @@ import MyInpWarning from "../../../components/MyInpWarning.vue";
         localStorage.getItem("X-Download-Auto-CurrentTab") ?? "release"
     );
 
-    async function get_version_manifest(): Promise<object | number> {
-        try {
-            const res = await axios.get(
-                "http://launchermeta.mojang.com/mc/game/version_manifest.json"
-            );
-            if (res.status === 200) {
-                return res.data;
-            } else {
-                return res.status;
-            }
-        } catch (err) {
-            throw new Error(String(err));
-        }
-    }
-
-    async function no_data_handler(): Promise<void> {
-        const res = await get_version_manifest();
-        if (typeof res === "object") {
-            // @ts-ignore
-            const versions = res["versions"];
-            loading(versions);
-            IO.writeTextFile(
-                await resolve(
-                    await appCacheDir(),
-                    "api_fetch",
-                    "version_manifest.json"
-                ),
-                JSON.stringify({
-                    data: [...versions],
-                    cache_expt: Date.now() + 600 * 1000,
-                })
-            );
-            status.value = "fulfilled";
-        } else if (typeof res === "number") {
-            status.value = `${res}`;
-        }
-    }
-
-    async function loading(data: Array<Client>) {
-        data.forEach((element: Client) => {
-            switch (element["type"]) {
-                case "release":
-                    version_manifest.release.push(element);
-                    break;
-                case "snapshot":
-                    if (
-                        element.releaseTime.includes("04-01") ||
-                        element.id === "1.RV-Pre1"
-                    ) {
-                        version_manifest.fool.push(element);
-                    } else if (
-                        [
-                            "1.3",
-                            "1.4",
-                            "1.4.1",
-                            "1.4.3",
-                            "1.5",
-                            "1.6",
-                            "1.6.3",
-                            "1.7",
-                            "1.7.1",
-                        ].includes(element.id)
-                    ) {
-                        version_manifest.release.push(element);
-                    } else {
-                        version_manifest.snapshot.push(element);
-                    }
-                    break;
-                case "old_beta":
-                case "old_alpha":
-                    version_manifest.old.push(element);
-            }
-        });
-    }
-
     function generate_date(isoDateString: string) {
         const date = new Date(isoDateString);
         const localYear = date.getFullYear();
-        const localMonth = (date.getMonth() + 1).toString().padStart(2, "0"); // 月份从 0 开始，需要加 1
+        const localMonth = (date.getMonth() + 1).toString().padStart(2, "0");
         const localDay = date.getDate().toString().padStart(2, "0");
         const localHours = date.getHours().toString().padStart(2, "0");
         const localMinutes = date.getMinutes().toString().padStart(2, "0");
@@ -123,7 +44,7 @@ import MyInpWarning from "../../../components/MyInpWarning.vue";
             await resolve(
                 await appCacheDir(),
                 "api_fetch",
-                "version_manifest.json"
+                "mc_version_manifest.json"
             )
         );
         if (isCache) {
@@ -132,26 +53,53 @@ import MyInpWarning from "../../../components/MyInpWarning.vue";
                     await resolve(
                         await appCacheDir(),
                         "api_fetch",
-                        "version_manifest.json"
+                        "mc_version_manifest.json"
                     )
                 )
             );
             if (Date.now() > data.cache_expt) {
-                no_data_handler();
+                await no_data_handler();
             } else {
                 const cData = data.data;
-                loading(cData);
-                status.value = "fulfilled";
+                const resp = await loading(cData);
+                switch (typeof resp) {
+                    case "object":
+                        version_manifest.release = resp.release;
+                        version_manifest.snapshot = resp.snapshot;
+                        version_manifest.old = resp.old;
+                        version_manifest.fool = resp.fool;
+                        status.value = "fulfilled";
+                        break;
+                    case "string":
+                        status.value = "error";
+                        break;
+                }
             }
         } else {
-            no_data_handler();
+            const cData = await no_data_handler();
+            switch (typeof cData) {
+                case "object":
+                    version_manifest.release = cData.release;
+                    version_manifest.snapshot = cData.snapshot;
+                    version_manifest.old = cData.old;
+                    version_manifest.fool = cData.fool;
+                    status.value = "fulfilled";
+                    break;
+                case "string":
+                    status.value = "error";
+                    break;
+            }
         }
     });
 </script>
 
 <template>
-    <div class="radio-inputs" fade-l>
-        <label class="radio" fade-l1>
+    <div
+        class="radio-inputs"
+        fade-l>
+        <label
+            class="radio"
+            fade-l1>
             <input
                 type="radio"
                 name="radio"
@@ -162,7 +110,9 @@ import MyInpWarning from "../../../components/MyInpWarning.vue";
                 正式版
             </span>
         </label>
-        <label class="radio" fade-l2>
+        <label
+            class="radio"
+            fade-l2>
             <input
                 type="radio"
                 name="radio"
@@ -173,7 +123,9 @@ import MyInpWarning from "../../../components/MyInpWarning.vue";
                 快照版
             </span>
         </label>
-        <label class="radio" fade-l3>
+        <label
+            class="radio"
+            fade-l3>
             <input
                 type="radio"
                 name="radio"
@@ -184,7 +136,9 @@ import MyInpWarning from "../../../components/MyInpWarning.vue";
                 远古版
             </span>
         </label>
-        <label class="radio" fade-l4>
+        <label
+            class="radio"
+            fade-l4>
             <input
                 type="radio"
                 name="radio"
@@ -200,7 +154,8 @@ import MyInpWarning from "../../../components/MyInpWarning.vue";
     <MyLoading v-if="status === `pending`" />
     <MyCard
         class="max-h-[calc(100vh-42px-32px-52px-0.8px-16px)] overflow-y-auto"
-        padding fade-u1
+        padding
+        fade-u1
         v-if="status === `fulfilled`">
         <div v-if="currentTab === `release`">
             <MyItem

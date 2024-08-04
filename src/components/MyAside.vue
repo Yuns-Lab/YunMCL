@@ -4,6 +4,8 @@
 
     import { useRoute } from "vue-router";
     const $route = useRoute();
+
+    import { default as manifest } from "../app/manifest.json";
 </script>
 
 <template>
@@ -85,5 +87,23 @@
                 </div>
             </div>
         </div>
+        <div class="btm flex justify-center items-center gap-6">
+            <img
+                src="/images/YunMCL.png"
+                width="90" />
+            <div class="flex flex-col items-center">
+                <span>YunMCL v{{ manifest.app_version }}</span>
+                <hr class="w-[7.2rem] mt-1 mb-1" />
+                <span class="-mb-1">{{ manifest.app_channel[0] }}渠道</span>
+                <span>{{ manifest.app_channel[1] }} Channel</span>
+            </div>
+        </div>
     </div>
 </template>
+
+<style lang="scss" scoped>
+    div.btm {
+        @apply mt-auto;
+        margin-bottom: 2rem;
+    }
+</style>

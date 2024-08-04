@@ -12,7 +12,7 @@
         "allowlist": {
             "all": true,
             "fs": {
-                "scope": ["$APPCACHE\\api_fetch\\version_manifest.json"]
+                "scope": ["$APPCACHE\\api_fetch\\*_version_manifest.json"]
             }
         },
         "windows": [

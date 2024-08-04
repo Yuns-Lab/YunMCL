@@ -9,8 +9,10 @@
     <button class="ly-my-item">
         <slot name="img"></slot>
         <div class="flex flex-col items-start">
-            <span class="text-lg leading-[22px]">{{ props.title }}</span>
-            <span class="opacity-70 leading-[18px]">{{ props.desp }}</span>
+            <span class="text-[1.2rem] leading-[22px]">{{ props.title }}</span>
+            <span class="text-[0.85rem] opacity-70 leading-[16px]">{{
+                props.desp
+            }}</span>
         </div>
     </button>
 </template>

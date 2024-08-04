@@ -1,4 +1,4 @@
 {
-    "app_version": "0.1.1",
-    "app_channel": "Breeze"
+    "app_version": "0.1.2",
+    "app_channel": ["旋风", "Breeze"]
 }
