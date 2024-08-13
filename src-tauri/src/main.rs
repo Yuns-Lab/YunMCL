@@ -9,7 +9,7 @@ async fn request_get<R: Runtime>(
     _window: tauri::Window<R>,
     url: String,
 ) -> String {
-    match rcore::http::get(url).await {
+    match yuncore::http::get(url).await {
         Ok(response) => response,
         Err(e) => e.to_string(),
     }

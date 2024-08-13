@@ -1,11 +1,10 @@
 {
     "build": {
-        "beforeBuildCommand": "pnpm build",
         "devPath": "http://localhost:1420",
         "distDir": "../dist"
     },
     "package": {
-        "productName": "ymcl",
+        "productName": "yunmcl",
         "version": "0.0.0"
     },
     "tauri": {
@@ -18,10 +17,10 @@
         "windows": [
             {
                 "title": "YunMCL",
-                "width": 1440,
-                "height": 1024,
-                "minWidth": 1380,
-                "minHeight": 920,
+                "width": 1280,
+                "height": 770,
+                "resizable": false,
+                "center": true,
                 "decorations": false,
                 "transparent": true,
                 "titleBarStyle": "Transparent"

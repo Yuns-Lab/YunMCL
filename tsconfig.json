@@ -18,7 +18,18 @@
         "strict": true,
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "noFallthroughCasesInSwitch": true
+        "noFallthroughCasesInSwitch": true,
+
+        /* Path Reslove */
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["src/*"],
+            "@p/*": ["src/app/*"],
+            "@a/*": ["src/assets/*"],
+            "@c/*": ["src/components/*"],
+            "@m/*": ["src/modules/*"],
+            "@t/*": ["src/assets/images/texture/*"]
+        }
     },
     "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
     "references": [{ "path": "./tsconfig.node.json" }]

@@ -1,96 +1,74 @@
-<script setup lang="tsx">
-    import MyCard from "../../components/MyCard.vue";
-    import MyBlurImg from "../../components/MyBlurImg.vue";
+<script setup lang="ts">
+    import MyCard from "@/components/MyCard.vue";
+    import MyPageleft from "@/components/MyPageleft.vue";
+    import MyPageleftBtn from "@/components/MyPageleftBtn.vue";
+    import { ref } from "vue";
 
-    import { useRouter } from "vue-router";
-    const $router = useRouter();
+    const currentPage = ref(Number(localStorage.getItem("X-PageSetting-Target")) || 1);
 </script>
 
 <template>
-    <legend @click="$router.push('/settings/minecraft')">
-        <MyCard
-            class="relative"
-            fade-u>
-            <MyBlurImg
-                src="/images/settings/minecraft.webp"
-                :blur="6" />
-            <div class="my-container">
-                <h1
-                    class="ml-[0.375rem]"
-                    fade-u1>
-                    游戏设置
-                </h1>
-                <p fade-u2>配置有关游戏启动的内容。</p>
-                <span fade-u3>前往 &gt;&gt;&gt;</span>
+    <main class="flex w-full h-full">
+        <MyPageleft
+            style="width: 12rem"
+            vly-fade-u>
+            <div
+                class="absolute left-2 torch transition-all duration-200 ease-in-out"
+                :style="{
+                    '--x-torch': `${40 * (currentPage - 1)}px`,
+                }"
+                vly-fade-u1>
+                <img
+                    src="@t/redstone_torch.png"
+                    class="w-7 rotate-0"
+                    style="--tw-rotate: 28deg" />
             </div>
-        </MyCard>
-    </legend>
-    <br />
-    <legend @click="$router.push('/settings/customize')">
-        <MyCard
-            class="relative"
-            fade-u>
-            <MyBlurImg
-                src="/images/settings/customize.webp"
-                :blur="6" />
-            <div class="my-container">
-                <h1
-                    class="ml-[0.375rem]"
-                    fade-u1>
-                    个性化设置
-                </h1>
-                <p fade-u2>自由调整启动器的样式，完美契合你心中所想。</p>
-                <span fade-u3>前往 &gt;&gt;&gt;</span>
-            </div>
-        </MyCard>
-    </legend>
-    <br />
-    <legend @click="$router.push('/settings/launcher')">
-        <MyCard
-            class="relative"
-            fade-u>
-            <MyBlurImg
-                src="/images/settings/launcher.webp"
-                :blur="6" />
-            <div class="my-container">
-                <h1
-                    class="ml-[0.375rem]"
-                    fade-u1>
-                    启动器设置
-                </h1>
-                <p fade-u2>配置启动器的核心内容。</p>
-                <span fade-u3>前往 &gt;&gt;&gt;</span>
-            </div>
-        </MyCard>
-    </legend>
+            <MyPageleftBtn
+                v-model="currentPage"
+                storageKey="X-PageSetting-Target"
+                vly-fade-u1
+                :target="1">
+                游戏
+            </MyPageleftBtn>
+            <MyPageleftBtn
+                v-model="currentPage"
+                storageKey="X-PageSetting-Target"
+                vly-fade-u2
+                :target="2">
+                个性化
+            </MyPageleftBtn>
+            <MyPageleftBtn
+                v-model="currentPage"
+                storageKey="X-PageSetting-Target"
+                vly-fade-u3
+                :target="3">
+                启动器
+            </MyPageleftBtn>
+        </MyPageleft>
+        <div
+            class="Pageright"
+            v-if="currentPage === 1">
+            <MyCard
+                title="111"
+                :can-swap="true"
+                vly-fade-u1>
+                111
+            </MyCard>
+        </div>
+        <div
+            class="Pageright"
+            v-if="currentPage === 2"></div>
+        <div
+            class="Pageright"
+            v-if="currentPage === 3"></div>
+    </main>
 </template>
 
 <style lang="scss" scoped>
-    legend {
-        @apply pl-4 pr-4;
-        transition: transform 0.2s ease-in-out;
-        transform: scale(1);
-        &:has(div.my-container:hover) {
-            transform: scale(1.02);
-        }
-        &:has(div.my-container:active) {
-            transition: transform 0.1s ease-in-out;
-            transform: scale(0.98);
-        }
+    .torch {
+        top: calc(18px + var(--x-torch));
     }
-    div.ly-my-card {
-        @apply h-[12.5rem];
-    }
-    div.my-container {
-        @apply absolute w-full h-full top-0 left-0 pt-4 pb-4 pl-3 pr-3 z-[2] text-white cursor-pointer;
-        h1 {
-            @apply text-5xl font-[550];
-        }
-        p {
-            @apply mt-2 ml-4 mr-4 mb-0 text-2xl font-[350];
-        }
-        span {
-            @apply absolute bottom-8 right-8 z-[2] text-3xl border-b-2;
-        }
+    div.Pageright {
+        @apply w-full h-full p-4 overflow-y-auto;
     }
 </style>

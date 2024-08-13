@@ -1,4 +1,5 @@
-@import url(animations.scss);
+@import url(./animations.scss);
+
 div#app {
     @apply w-full h-[100vh];
 }
@@ -13,31 +14,14 @@ button:not([hastab]) {
 
 // #region 字体
 @font-face {
-    font-family: "Bahnschrift";
-    src: url("../fonts/bahnschrift.ttf/") format("truetype");
+    font-family: "Pixelfont";
+    src: url("../fonts/fusion-pixel.ttf/") format("truetype");
 }
-
-@font-face {
-    font-family: "Zhushi";
-    src: url("../fonts/YangRenDongZhuShiTi-Regular-2.ttf") format("truetype");
-}
-
 // #endregion
 
 // #region 主题样式
 body {
-    --nav-bg: hsl(82.25, 46.6%, 15%);
-    --main-bg: hsl(82.25, 46.6%, 25%);
-    --main-bg2: hsl(82.25, 46.6%, 30%);
-    --sbtn-bg: hsl(44.88, 100%, 40%);
-    --sbtn-bg-this: hsl(44.88, 100%, 50%);
-    --lbtn-br: hsl(44.88, 100%, 50%);
-    --lbtn-bg: hsla(45, 100%, 50%, 0.671);
-    --cbg: hsla(0, 0%, 100%, 0.9);
-    --loading-1: hsl(82.25, 95%, 55%);
-    --loading-2: hsl(44.88, 100%, 65%);
-    --loading-3: hsl(180, 100%, 65%);
-    font-family: "Bahnschrift", "Zhushi", Arial, Helvetica, sans-serif;
+    font-family: "Pixelfont";
     user-select: none;
 }
 // #endregion

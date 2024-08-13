@@ -8,7 +8,7 @@
     }
 }
 
-[fade-u] {
+[vly-fade-u] {
     --start: 0s;
     --delay: 1s;
     --lv: 0;
@@ -20,7 +20,7 @@
 }
 
 @for $k from 1 through 40 {
-    [fade-u#{$k}] {
+    [vly-fade-u#{$k}] {
         --lv: calc(#{$k} * 0.25);
         --start: 0s;
         --delay: 1s;
@@ -42,7 +42,7 @@
     }
 }
 
-[fade-d] {
+[vly-fade-d] {
     --start: 0s;
     --delay: 1s;
     --lv: 0;
@@ -54,7 +54,7 @@
 }
 
 @for $k from 1 through 40 {
-    [fade-d#{$k}] {
+    [vly-fade-d#{$k}] {
         --lv: calc(#{$k} * 0.25);
         --start: 0s;
         --delay: 1s;
@@ -76,7 +76,7 @@
     }
 }
 
-[fade-l] {
+[vly-fade-l] {
     --start: 0s;
     --delay: 1s;
     --lv: 0;
@@ -88,7 +88,7 @@
 }
 
 @for $k from 1 through 40 {
-    [fade-l#{$k}] {
+    [vly-fade-l#{$k}] {
         --lv: calc(#{$k} * 0.25);
         --start: 0s;
         --delay: 1s;
@@ -110,7 +110,7 @@
     }
 }
 
-[fade-r] {
+[vly-fade-r] {
     --start: 0s;
     --delay: 1s;
     --lv: 0;
@@ -122,7 +122,7 @@
 }
 
 @for $k from 1 through 40 {
-    [fade-r#{$k}] {
+    [vly-fade-r#{$k}] {
         --lv: calc(#{$k} * 0.25);
         --start: 0s;
         --delay: 1s;
@@ -131,14 +131,5 @@
             calc(var(--lv) * var(--delay) + var(--start)) / var(--global-time)
         );
         transform: translateX(-12px);
-    }
-}
-
-@keyframes rotate-90-r {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(90deg);
     }
 }

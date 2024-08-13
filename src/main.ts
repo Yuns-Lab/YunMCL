@@ -7,13 +7,12 @@ const app = createApp(App);
 import { MotionPlugin } from "@vueuse/motion";
 app.use(MotionPlugin);
 
-import router from "./router";
+import router from "@m/router";
 app.use(router);
 //#endregion
 
 //#region 组件
-import { ElScrollbar } from "element-plus";
-app.component("ElScrollbar", ElScrollbar);
+// NULL
 //#endregion
 
 app.mount("#app");
