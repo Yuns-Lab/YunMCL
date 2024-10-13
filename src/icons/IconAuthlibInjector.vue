@@ -1,0 +1,24 @@
+<script lang="ts" setup>
+    const props = defineProps<{
+        color?: string;
+        size: string | number;
+    }>();
+</script>
+
+<template>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        :width="props.size"
+        :height="props.size"
+        viewBox="0 0 24 24">
+        <path
+            :fill="props.color || 'currentColor'"
+            d="M8 9a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m4 8H4v-1c0-1.33 2.67-2 4-2s4 .67 4 2zm8-9h-6v2h6zm0 4h-6v2h6zm0 4h-6v2h6zm2-12h-8v2h8v14H2V6h8V4H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2m-9 2h-2V2h2z" />
+    </svg>
+</template>
+
+<style lang="scss" scoped>
+    svg {
+        transform: translateY(-1px);
+    }
+</style>
